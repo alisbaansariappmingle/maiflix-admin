@@ -1,7 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useRef } from 'react'
 import { RxCross2 } from "react-icons/rx";
+import DatePicker from "react-datepicker";
+import { FaRegClock } from "react-icons/fa";
+import "react-datepicker/dist/react-datepicker.css";
 
 const AddSlot = ({ closeModal }) => {
+    const [selectedTime, setSelectedTime] = useState(null);
+    const [selectTime,setSelecteTime]=useState(null);
+    const datePickerRef = useRef(null);
+    const timepicker =useRef(null);
     const [formData, setFormData] = useState({
         time: "",
         day: "",
@@ -43,27 +50,40 @@ const AddSlot = ({ closeModal }) => {
                                 <div className='flex-1'>
 
                                     <label className="block text-md font-semibold">Start Time</label>
-                                    <input
-                                        type="time"
-                                        name="time"
-                                        //   value=""
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full p-2 border rounded-md"
-                                        placeholder=""
-                                    />
+                                    <div className="relative">
+                                        <DatePicker
+                                            selected={selectedTime}
+                                            ref={datePickerRef}
+                                            onChange={(time) => setSelectedTime(time)}
+                                            showTimeSelect
+                                            showTimeSelectOnly
+                                            timeIntervals={15}
+                                            timeCaption="Time"
+                                            dateFormat="h:mm aa"
+                                            className="w-full p-2 border rounded-md pl-10" // Add padding for icon
+                                        />
+                                        {/* Watch Icon */}
+                                        <FaRegClock onClick={() => datePickerRef.current.setOpen(true)} className="absolute right-3 top-1/2 cursor-pointer transform -translate-y-1/2 text-gray-900 text-lg" />
+                                    </div>
                                 </div>
                                 <div className='flex-1'>
+
                                     <label className="block text-md font-semibold">End Time</label>
-                                    <input
-                                        type="time"
-                                        name="time"
-                                        //   value=""
-                                        onChange={handleChange}
-                                        required
-                                        className="w-full p-2 border rounded-md"
-                                        placeholder=""
-                                    />
+                                    <div className="relative">
+                                        <DatePicker
+                                            selected={selectTime}
+                                            ref={timepicker}
+                                            onChange={(time) => setSelecteTime(time)}
+                                            showTimeSelect
+                                            showTimeSelectOnly
+                                            timeIntervals={15}
+                                            timeCaption="Time"
+                                            dateFormat="h:mm aa"
+                                            className="w-full p-2 border rounded-md pl-10" 
+                                        />
+                                        {/* Watch Icon */}
+                                        <FaRegClock onClick={() => timepicker.current.setOpen(true)} className="absolute right-3 top-1/2 cursor-pointer transform -translate-y-1/2 text-gray-900 text-lg" />
+                                    </div>
                                 </div>
                             </div>
                         </div>
