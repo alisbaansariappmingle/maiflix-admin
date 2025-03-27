@@ -29,9 +29,7 @@ const User = () => {
     const quickFilters = ["Today", "Yesterday", "This Week", "7 week", "Last Week", "This Month", "Next Year", "Custom"];
 
     return (
-
         <>
-           
             <div className="p-6 h-screen">
             <div className="flex gap-6 items-center mb-3">
                 <h1 className="text-xl font-semibold flex items-center bg-[#ce621a] text-white px-2 py-2 rounded-lg cursor-pointer " onClick={() => setIsFilterOpen(!isFilterOpen)} >
@@ -42,7 +40,7 @@ const User = () => {
                     <div className="flex gap-5">
                         {quickFilters.map((filter) => (
                             <button key={filter} onClick={() => setIsFilterOpen(false)}
-                                className=" font-semibold bg-gray-200 p-2 rounded-lg text-sm hover:bg-gray-300">
+                                className=" font-semibold bg-gray-200 p-2 rounded-lg text-sm hover:bg-gray-300 cursor-pointer">
                                 {filter}
                             </button>
                         ))}
